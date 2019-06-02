@@ -30,6 +30,8 @@ app.use(bodyParser.text())
 
 app.use(cookieParser())
 
+app.use('/api/user', require('modules/user'))
+
 app.use(morgan('dev', {
   skip: function (req, res) {
     return res.statusCode < 400
