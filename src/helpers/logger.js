@@ -8,10 +8,10 @@ const loggerFormat = printf(({ level, message, label, timestamp }) => {
 const level = process.env.LOG_LEVEL || 'debug'
 
 module.exports = (options = {}) => {
-  let { ctx = 'App' } = options
+  let { context = 'App' } = options
   const logger = createLogger({
     format: combine(
-      label({ label: ctx }),
+      label({ label: context }),
       timestamp(),
       loggerFormat
     ),
