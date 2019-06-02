@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const morgan = require('morgan')
-const logger = require('./helpers/logger')
+const logger = require('./helpers/logger')({ ctx: 'Application' })
 
 const port = process.env.PORT || 3000
 
