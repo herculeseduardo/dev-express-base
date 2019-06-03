@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const HTTPStatus = require('http-status')
 const morgan = require('morgan')
-const logger = require('./helpers/logger')({ context: 'Application' })
+const logger = require('helpers/logger')({ context: 'Application' })
 
 const port = process.env.PORT || 3000
 
@@ -31,6 +31,13 @@ app.use(bodyParser.text())
 app.use(cookieParser())
 
 app.use('/api/user', require('modules/user'))
+
+const swagger = require('helpers/swagger')({ apis: [
+  `./src/modules/user/**/*.js`
+] })
+
+app.use('/swagger', swagger.router)
+app.get('/', (req, res, next) => res.redirect('/swagger'))
 
 app.use(morgan('dev', {
   skip: function (req, res) {

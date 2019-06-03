@@ -3,4 +3,12 @@ process.env.JWT_AUTH_HEADER_PREFIX = process.env.JWT_AUTH_HEADER_PREFIX || 'Bear
 
 const jwt = require('express-jwt-token')
 
+/**
+ * @swagger
+ * securityDefinitions:
+ *   Bearer:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
+ */
 module.exports = jwt.jwtAuthProtected
